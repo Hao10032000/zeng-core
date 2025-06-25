@@ -30,8 +30,9 @@ define( 'THEMESFLAT_LINK_PLUGIN', trailingslashit( get_template_directory_uri() 
 
 $theme = wp_get_theme();
 
-if ( 'drozy' == $theme->name || 'drozy' == $theme->parent_theme ) {
+if ( 'zeng' == $theme->name || 'zeng' == $theme->parent_theme ) {
     require THEMESFLAT_PATH . "/widgets/themesflat_recent_post.php";
+    require_once plugin_dir_path( __FILE__ ).'/user-option.php';
 }
 
 
@@ -57,7 +58,7 @@ if (!defined('ABSPATH'))
 
 
 
-final class ThemesFlat_Addon_For_Elementor_drozy {
+final class ThemesFlat_Addon_For_Elementor_zeng {
 
 
 
@@ -316,6 +317,9 @@ final class ThemesFlat_Addon_For_Elementor_drozy {
         require_once( __DIR__ . '/widgets/widget-counter.php' );
         \Elementor\Plugin::instance()->widgets_manager->register( new \TFCounter_Widget() );
 
+        require_once( __DIR__ . '/widgets/widget-testimonial.php' );
+        \Elementor\Plugin::instance()->widgets_manager->register( new \TFTestimonial_Widget() );
+
     }
 
 
@@ -327,6 +331,8 @@ final class ThemesFlat_Addon_For_Elementor_drozy {
 
 
         wp_register_script( 'tf-posts-core', plugins_url( '/assets/js/posts/tf-posts.js', __FILE__ ), [ 'jquery' ], false, true );
+
+        wp_register_script( 'tf-carousel', plugins_url( '/assets/js/carousel-widget.js', __FILE__ ), [ 'jquery' ], false, true );
 
     }
 
@@ -388,4 +394,80 @@ final class ThemesFlat_Addon_For_Elementor_drozy {
 
 }
 
-ThemesFlat_Addon_For_Elementor_drozy::instance();
+ThemesFlat_Addon_For_Elementor_zeng::instance();
+
+/**
+ * Custom Walker for WordPress Navigation Menu
+ * Generates the specific HTML structure for menu items as requested.
+ */
+class Custom_Nav_Menu_Walker extends Walker_Nav_Menu {
+
+    /**
+     * Start the element output.
+     *
+     * @see Walker::start_el()
+     *
+     * @param string $output Passed by reference. Used to append additional content.
+     * @param WP_Post $item Menu item data object.
+     * @param int $depth Depth of menu item. Used for padding.
+     * @param stdClass $args An object of wp_nav_menu() arguments.
+     * @param int $id Current item ID.
+     */
+    public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
+        if ( isset( $args->item_spacing ) && 'preserve' === $args->item_spacing ) {
+            $t = "\t";
+            $n = "\n";
+        } else {
+            $t = '';
+            $n = '';
+        }
+        $indent = ( $depth ) ? str_repeat( $t, $depth ) : '';
+
+        $classes = empty( $item->classes ) ? array() : (array) $item->classes;
+        $classes[] = 'text-menu text_white'; // Add your desired LI classes here
+
+        // Filter CSS classes for the current LI element.
+        $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) );
+        $class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
+
+        // Filter the ID attribute for the current LI element.
+        $id = apply_filters( 'nav_menu_item_id', 'menu-item-' . $item->ID, $item, $args, $depth );
+        $id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
+
+        $output .= $indent . '<li' . $id . $class_names . '>';
+
+        $atts = array();
+        $atts['class'] = 'nav_link toggle splitting link link-no-action text-button font-3 fw-6'; // Add your desired A classes here
+
+        $atts['href'] = ! empty( $item->url ) ? $item->url : '';
+        $atts['target'] = ! empty( $item->target ) ? $item->target : '';
+        $atts['rel'] = ! empty( $item->xfn ) ? $item->xfn : '';
+
+        // Apply filters to the HTML attributes.
+        $atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args, $depth );
+
+        $attributes = '';
+        foreach ( $atts as $attr => $value ) {
+            if ( ! empty( $value ) ) {
+                $value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+                $attributes .= ' ' . $attr . '="' . $value . '"';
+            }
+        }
+
+        /**
+         * Construct the link HTML with custom <span> elements.
+         * The item->title contains the menu item's title.
+         */
+        $item_output = $args->before;
+        $item_output .= '<a' . $attributes . '>';
+        $item_output .= '<span class="text" data-splitting>' . apply_filters( 'the_title', $item->title, $item->ID ) . '</span>';
+        $item_output .= '<span class="text" data-splitting>' . apply_filters( 'the_title', $item->title, $item->ID ) . '</span>';
+        $item_output .= '</a>';
+        $item_output .= $args->after;
+
+        $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+    }
+
+    // You generally don't need to override end_el() for this structure,
+    // as it just closes the </li> tag, which is fine by default.
+}

@@ -97,11 +97,11 @@ $query_args['post__not_in'] = $current_posts_ids;
                                 echo '</li>';
             echo '<li>';
                 $author_id = get_post_field('post_author', get_the_ID());
-                echo '<span class="text_secodary2-color">' . esc_html__( 'POST BY', 'drozy' ) . '</span>';
+                echo '<span class="text_secodary2-color">' . esc_html__( 'POST BY', 'zeng' ) . '</span>';
                 printf(
                     ' <a class="link" href="%s" title="%s" rel="author" aria-label="author">%s</a>',
                     esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) )),
-                    esc_attr( sprintf( __( 'POST BY %s', 'drozy' ), get_user_full_name($author_id) )),
+                    esc_attr( sprintf( __( 'POST BY %s', 'zeng' ), get_user_full_name($author_id) )),
                     get_user_full_name($author_id)
                 );
             echo '</li>';
