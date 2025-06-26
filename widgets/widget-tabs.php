@@ -105,8 +105,8 @@ class TFTabs_Widget extends \Elementor\Widget_Base {
 
 	
 	    $this->end_controls_section();
-        // /.End Tab Setting 
-		$this->start_controls_section(
+// /.End Tab Setting 
+$this->start_controls_section(
     'tab_nav_style',
     [
         'label' => esc_html__( 'Tab (Menu Tab Link)', 'themesflat-core' ),
@@ -161,7 +161,7 @@ $this->add_group_control(
 
 $this->end_controls_section();
 
-		$this->start_controls_section(
+$this->start_controls_section(
     'tab_title_style',
     [
         'label' => esc_html__( 'Tab Title', 'themesflat-core' ),
@@ -270,6 +270,7 @@ $this->add_responsive_control(
 );
 
 $this->end_controls_section();
+
 $this->start_controls_section(
     'tab_button_style',
     [
@@ -347,7 +348,6 @@ $this->add_responsive_control(
 );
 
 // Hover
-$this->start_controls_tab( 'button_hover_tab', [ 'label' => esc_html__( 'Hover', 'themesflat-core' ) ] );
 
 $this->add_control(
     'button_hover_color',
@@ -371,56 +371,15 @@ $this->add_control(
     ]
 );
 
-$this->end_controls_tab();
 
 $this->end_controls_section();
-$this->start_controls_section(
-    'tab_description_style',
-    [
-        'label' => esc_html__( 'Tab Content List', 'themesflat-core' ),
-        'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
-    ]
-);
 
-$this->add_control(
-    'description_text_color',
-    [
-        'label'     => esc_html__( 'Text Color', 'themesflat-core' ),
-        'type'      => \Elementor\Controls_Manager::COLOR,
-        'selectors' => [
-            '{{WRAPPER}} .pricing-item li' => 'color: {{VALUE}};',
-        ],
-    ]
-);
-
-// Typography
-$this->add_group_control(
-    \Elementor\Group_Control_Typography::get_type(),
-    [
-        'name'     => 'description_typography',
-        'label'    => esc_html__( 'Typography', 'themesflat-core' ),
-        'selector' => '{{WRAPPER}} .pricing-item li',
-    ]
-);
-
-$this->add_control(
-    'description_icon_color',
-    [
-        'label'     => esc_html__( 'Icon Color', 'themesflat-core' ),
-        'type'      => \Elementor\Controls_Manager::COLOR,
-        'selectors' => [
-            '{{WRAPPER}} .pricing-item.style-1 li::before' => 'color: {{VALUE}};',
-        ],
-    ]
-);
-
-$this->end_controls_section();
 
 	    // /.End Style Title 
 
 	}
 
-	protected function render($instance = []) {
+	protected function render() {
 		$settings = $this->get_settings_for_display();
 
 $this->add_render_attribute( 'tf_tabs_wrapper', [
