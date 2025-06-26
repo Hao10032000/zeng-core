@@ -320,6 +320,9 @@ final class ThemesFlat_Addon_For_Elementor_zeng {
         require_once( __DIR__ . '/widgets/widget-tabs.php' );
         \Elementor\Plugin::instance()->widgets_manager->register( new \TFTabs_Widget() );
 
+        require_once( __DIR__ . '/widgets/widget-author.php' );
+        \Elementor\Plugin::instance()->widgets_manager->register( new \TFAuthor_Widget() );
+
     }
 
 
