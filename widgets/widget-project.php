@@ -160,9 +160,9 @@ class TFProject_Widget extends \Elementor\Widget_Base {
                             </a>
                             <h5 class=" title font-4 text_white"><a href="<?php echo esc_url($item['link_button']['url']);?>" class="link"><?php echo esc_html($item['title']); ?></a>
                             </h5>
-                            <!-- <div class="item-shape">
-                                <img src="images/item/small-comet.webp" loading="lazy" decoding="async" alt="item">
-                            </div> -->
+                            <div class="item-shape">
+                                <img src="<?php echo esc_url(URL_THEMESFLAT_ADDONS_ELEMENTOR_THEME . "assets/img/small-comet.webp"); ?>" loading="lazy" decoding="async" alt="item">
+                            </div>
                         </div>
 				<?php $count++; endforeach; ?>
         </div>
@@ -193,9 +193,9 @@ class TFProject_Widget extends \Elementor\Widget_Base {
                             </a>
                             <h5 class=" title font-4 text_white"><a href="<?php echo esc_url($item['link_button']['url']);?>" class="link"><?php echo esc_html($item['title']); ?></a>
                             </h5>
-                            <!-- <div class="item-shape">
-                                <img src="images/item/small-comet.webp" loading="lazy" decoding="async" alt="item">
-                            </div> -->
+                            <div class="item-shape">
+                                <img src="<?php echo esc_url(URL_THEMESFLAT_ADDONS_ELEMENTOR_THEME . "assets/img/small-comet.webp"); ?>" loading="lazy" decoding="async" alt="item">
+                            </div>
                         </div>
 				<?php $count++; endforeach; ?>
         </div>

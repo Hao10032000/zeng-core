@@ -296,9 +296,6 @@ final class ThemesFlat_Addon_For_Elementor_zeng {
         // require_once( __DIR__ . '/widgets/widget-popular-post.php' );
         // \Elementor\Plugin::instance()->widgets_manager->register( new \TFPopular_Posts_Widget() );
 
-        // require_once( __DIR__ . '/widgets/widget-category-list.php' );
-        // \Elementor\Plugin::instance()->widgets_manager->register( new \TFCategory_list_Widget() );
-
         require_once( __DIR__ . '/widgets/widget-project.php' );
         \Elementor\Plugin::instance()->widgets_manager->register( new \TFProject_Widget() );
 
@@ -319,6 +316,9 @@ final class ThemesFlat_Addon_For_Elementor_zeng {
 
         require_once( __DIR__ . '/widgets/widget-testimonial.php' );
         \Elementor\Plugin::instance()->widgets_manager->register( new \TFTestimonial_Widget() );
+
+        require_once( __DIR__ . '/widgets/widget-tabs.php' );
+        \Elementor\Plugin::instance()->widgets_manager->register( new \TFTabs_Widget() );
 
     }
 

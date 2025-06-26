@@ -137,7 +137,7 @@ class TFService_Widget extends \Elementor\Widget_Base {
         <a href="<?php echo esc_url($item['link_button']['url']);?>" class="btn-arrow"><i
                 class="icon-ArrowRight"></i></a>
         <div class="item-shape spotlight">
-            <img src="../../img/small-comet.png" loading="lazy" decoding="async" alt="item">
+            <img src="<?php echo esc_url(URL_THEMESFLAT_ADDONS_ELEMENTOR_THEME . "assets/img/small-comet.webp"); ?>" loading="lazy" decoding="async" alt="item">
         </div>
     </div>
     <div class="img-hover">

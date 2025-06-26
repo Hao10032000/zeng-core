@@ -296,7 +296,7 @@ class TFTestimonial_Widget extends \Elementor\Widget_Base {
         $swiper_data_attributes_string = implode(' ', $swiper_data_attributes);
         ?>
 
-        <div id="testimonial" class="section-testimonial style-1 section spacing-5 sw-layout">
+        <div id="testimonial" class="section-testimonial section sw-layout">
             <?php if ( 'yes' === $settings['show_arrows'] ) : // Conditional display for arrows ?>
                 <div class="heading-section mb_43 d-flex align-items-end justify-content-between">
                     <div class="wrap-sw-button d-flex gap_12 ">
@@ -309,7 +309,6 @@ class TFTestimonial_Widget extends \Elementor\Widget_Base {
                     </div>
                 </div>
             <?php endif; ?>
-
             <div class="swiper " <?php echo $swiper_data_attributes_string; ?>>
                 <div class="swiper-wrapper">
 
@@ -348,7 +347,6 @@ class TFTestimonial_Widget extends \Elementor\Widget_Base {
 
                 </div>
             </div>
-
         </div>
 
     <?php
