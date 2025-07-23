@@ -331,9 +331,9 @@ $this->end_controls_section();
             <?php echo esc_html($settings['description']); ?>
             <?php endif; ?>
             <span class="tf-text s1 cd-words-wrapper text_primary-color">
-                <?php foreach ($settings['list'] as $item) : ?>
-                <span class="item-text is-visible"><?php echo esc_html($item['animate_text']); ?></span>
-                <?php endforeach; ?>
+                <?php $count=1; foreach ($settings['list'] as $item) : ?>
+                <span class="item-text <?php echo esc_attr($count==1 ? 'is-visible': ''); ?>"><?php echo esc_html($item['animate_text']); ?></span>
+                <?php $count++; endforeach; ?>
             </span>
             <?php if (!empty($settings['title-heding'])) : ?>
             <?php echo esc_html($settings['title-heding']); ?>
@@ -371,9 +371,9 @@ $this->end_controls_section();
             <?php echo esc_html($settings['description']); ?>
             <?php endif; ?>
             <span class="tf-text s1 cd-words-wrapper text_primary-color">
-                <?php foreach ($settings['list'] as $item) : ?>
-                <span class="item-text is-visible"><?php echo esc_html($item['animate_text']); ?></span>
-                <?php endforeach; ?>
+                <?php $count=1; foreach ($settings['list'] as $item) : ?>
+                <span class="item-text <?php echo esc_attr($count==1 ? 'is-visible': ''); ?>"><?php echo esc_html($item['animate_text']); ?></span>
+                <?php $count++; endforeach; ?>
             </span>
         </h4>
         <div class="shape">

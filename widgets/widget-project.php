@@ -169,6 +169,7 @@ class TFProject_Widget extends \Elementor\Widget_Base {
 
 <?php
 } else { ?>
+<div id="portfolio" class="section-portfolio spacing-1 stack-element section">
 <div class="tabs-content-wrap">
 			<?php $count=1;  foreach ( $settings['list'] as $index => $item ): 
                        				 $image_thumb = $item['image_thumb'];
@@ -183,7 +184,7 @@ class TFProject_Widget extends \Elementor\Widget_Base {
                                         }
                 ?>
                         <div class="portfolio-item element">
-                            <a href="<?php echo esc_url($item['link_button']['url']);?>" data-fancybox="gallery" class="img-style">
+                            <a href="<?php echo esc_url($image_url);?>" data-fancybox="gallery" class="img-style">
 								<?php if ( $image_url ) {
                                 echo '<img src="' . esc_url( $image_url ) . '" alt="thumb">';
                             } ?>                             
@@ -199,6 +200,7 @@ class TFProject_Widget extends \Elementor\Widget_Base {
                         </div>
 				<?php $count++; endforeach; ?>
         </div>
+    </div>
 <?php
 		}
 }
