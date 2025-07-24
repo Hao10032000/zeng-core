@@ -39,6 +39,7 @@ class TFCall_Action_Widget extends \Elementor\Widget_Base {
 				'style1' => esc_html__('Style 1', 'themesflat-core'),
 				'style2' => esc_html__('Style 2', 'themesflat-core'),
 				'style3' => esc_html__('Style 3', 'themesflat-core'),
+                'style4' => esc_html__('Style 4', 'themesflat-core'),
 			],
 		]);
 
@@ -47,6 +48,9 @@ class TFCall_Action_Widget extends \Elementor\Widget_Base {
 			'type' => \Elementor\Controls_Manager::TEXT,
 			'default' => esc_html__('Resume', 'themesflat-core'),
 			'label_block' => true,
+            'condition' => [
+              'style!' => [ 'style4']
+            ],
 		]);
 
 		$this->add_control('description', [
@@ -54,6 +58,9 @@ class TFCall_Action_Widget extends \Elementor\Widget_Base {
 			'type' => \Elementor\Controls_Manager::TEXT,
 			'default' => esc_html__('Education & Experience', 'themesflat-core'),
 			'label_block' => true,
+             'condition' => [
+              'style!' => [ 'style4']
+            ],
 		]);
 
 		$repeater = new \Elementor\Repeater();
@@ -72,8 +79,8 @@ class TFCall_Action_Widget extends \Elementor\Widget_Base {
 				['animate_text' => esc_html__('AI Developer 1', 'themesflat-core')],
 			],
 			'condition' => [
-    'style' => ['style2', 'style3']
-],
+                  'style' => ['style2', 'style3']
+             ],
 
 		]);
 
@@ -83,8 +90,8 @@ class TFCall_Action_Widget extends \Elementor\Widget_Base {
 			'default' => esc_html__('Empower Code Intelligence', 'themesflat-core'),
 			'label_block' => true,
 			'condition' => [
-    'style' => ['style2', 'style3']
-],
+              'style' => ['style2', 'style3', 'style4']
+            ],
 
 		]);
 
@@ -94,7 +101,7 @@ class TFCall_Action_Widget extends \Elementor\Widget_Base {
 			'default' => esc_html__('Hello! I\'m ZenG, an AI Developer with 10 years of experience...', 'themesflat-core'),
 			'label_block' => true,
 			'condition' => [
-    'style' => ['style2']
+    'style' => ['style2', 'style4']
 ],
 
 		]);
@@ -104,14 +111,14 @@ class TFCall_Action_Widget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
     'section_heading_style',
     [
-        'label' => esc_html__( 'Content', 'your-textdomain' ),
+        'label' => esc_html__( 'Content', 'themesflat-core' ),
         'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
     ]
 );
 $this->add_control(
     'content_margin',
     [
-        'label' => esc_html__( 'Margin', 'your-textdomain' ),
+        'label' => esc_html__( 'Margin', 'themesflat-core' ),
         'type' => \Elementor\Controls_Manager::DIMENSIONS,
         'size_units' => [ 'px', '%', 'em' ],
         'selectors' => [
@@ -123,9 +130,12 @@ $this->add_control(
 $this->add_control(
     'heading_style_heading',
     [
-        'label' => esc_html__( 'Sub Title', 'your-textdomain' ),
+        'label' => esc_html__( 'Sub Title', 'themesflat-core' ),
         'type' => \Elementor\Controls_Manager::HEADING,
         'separator' => 'before',
+        'condition' => [
+            'style!' => ['style4'],
+        ],
     ]
 );
 
@@ -133,18 +143,24 @@ $this->add_group_control(
     \Elementor\Group_Control_Typography::get_type(),
     [
         'name' => 'heading_typography',
-        'label' => esc_html__( 'Typography', 'your-textdomain' ),
+        'label' => esc_html__( 'Typography', 'themesflat-core' ),
         'selector' => '{{WRAPPER}} .tag-heading',
+        'condition' => [
+            'style!' => ['style4'],
+        ],
     ]
 );
 
 $this->add_control(
     'heading_color',
     [
-        'label' => esc_html__( 'Color', 'your-textdomain' ),
+        'label' => esc_html__( 'Color', 'themesflat-core' ),
         'type' => \Elementor\Controls_Manager::COLOR,
         'selectors' => [
             '{{WRAPPER}} .tag-heading' => 'color: {{VALUE}};',
+        ],
+        'condition' => [
+            'style!' => ['style4'],
         ],
     ]
 );
@@ -152,11 +168,14 @@ $this->add_control(
 $this->add_control(
     'heading_margin',
     [
-        'label' => esc_html__( 'Margin', 'your-textdomain' ),
+        'label' => esc_html__( 'Margin', 'themesflat-core' ),
         'type' => \Elementor\Controls_Manager::DIMENSIONS,
         'size_units' => [ 'px', '%', 'em' ],
         'selectors' => [
             '{{WRAPPER}} .tag-heading' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+        ],
+        'condition' => [
+            'style!' => ['style4'],
         ],
     ]
 );
@@ -165,7 +184,7 @@ $this->add_control(
 $this->add_control(
     'description_style_heading',
     [
-        'label' => esc_html__( 'Title', 'your-textdomain' ),
+        'label' => esc_html__( 'Title', 'themesflat-core' ),
         'type' => \Elementor\Controls_Manager::HEADING,
         'separator' => 'before',
     ]
@@ -175,7 +194,7 @@ $this->add_group_control(
     \Elementor\Group_Control_Typography::get_type(),
     [
         'name' => 'description_typography',
-        'label' => esc_html__( 'Typography', 'your-textdomain' ),
+        'label' => esc_html__( 'Typography', 'themesflat-core' ),
         'selector' => '{{WRAPPER}} .heading-section h3,{{WRAPPER}} .heading-section h4',
     ]
 );
@@ -183,7 +202,7 @@ $this->add_group_control(
 $this->add_control(
     'description_color',
     [
-        'label' => esc_html__( 'Color', 'your-textdomain' ),
+        'label' => esc_html__( 'Color', 'themesflat-core' ),
         'type' => \Elementor\Controls_Manager::COLOR,
         'selectors' => [
             '{{WRAPPER}} .heading-section h3,{{WRAPPER}} .heading-section h4' => 'color: {{VALUE}};',
@@ -194,7 +213,7 @@ $this->add_control(
 $this->add_control(
     'description_margin',
     [
-        'label' => esc_html__( 'Margin', 'your-textdomain' ),
+        'label' => esc_html__( 'Margin', 'themesflat-core' ),
         'type' => \Elementor\Controls_Manager::DIMENSIONS,
         'size_units' => [ 'px', '%', 'em' ],
         'selectors' => [
@@ -206,7 +225,7 @@ $this->add_control(
 $this->add_control(
     'title_heading_style_heading',
     [
-        'label' => esc_html__( 'Title Heading', 'your-textdomain' ),
+        'label' => esc_html__( 'Title Heading', 'themesflat-core' ),
         'type' => \Elementor\Controls_Manager::HEADING,
         'separator' => 'before',
         'condition' => [
@@ -229,7 +248,7 @@ $this->add_group_control(
 $this->add_control(
     'title_heading_color',
     [
-        'label' => esc_html__( 'Color', 'your-textdomain' ),
+        'label' => esc_html__( 'Color', 'themesflat-core' ),
         'type' => \Elementor\Controls_Manager::COLOR,
         'selectors' => [
             '{{WRAPPER}} h1.title' => 'color: {{VALUE}};',
@@ -243,7 +262,7 @@ $this->add_control(
 $this->add_control(
     'title_heading_margin',
     [
-        'label' => esc_html__( 'Margin', 'your-textdomain' ),
+        'label' => esc_html__( 'Margin', 'themesflat-core' ),
         'type' => \Elementor\Controls_Manager::DIMENSIONS,
         'size_units' => [ 'px', '%', 'em' ],
         'selectors' => [
@@ -259,7 +278,7 @@ $this->add_control(
 $this->add_control(
     'description_heading_style_heading',
     [
-        'label' => esc_html__( 'Description ', 'your-textdomain' ),
+        'label' => esc_html__( 'Description ', 'themesflat-core' ),
         'type' => \Elementor\Controls_Manager::HEADING,
         'separator' => 'before',
         'condition' => [
@@ -282,7 +301,7 @@ $this->add_group_control(
 $this->add_control(
     'description_text_color',
     [
-        'label' => esc_html__( 'Color', 'your-textdomain' ),
+        'label' => esc_html__( 'Color', 'themesflat-core' ),
         'type' => \Elementor\Controls_Manager::COLOR,
         'selectors' => [
             '{{WRAPPER}} p.split-text' => 'color: {{VALUE}};',
@@ -296,7 +315,7 @@ $this->add_control(
 $this->add_control(
     'description_text_margin',
     [
-        'label' => esc_html__( 'Margin', 'your-textdomain' ),
+        'label' => esc_html__( 'Margin', 'themesflat-core' ),
         'type' => \Elementor\Controls_Manager::DIMENSIONS,
         'size_units' => [ 'px', '%', 'em' ],
         'selectors' => [
@@ -316,8 +335,25 @@ $this->end_controls_section();
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		?>
+<?php if ($settings['style'] === 'style4') : ?>
+<div class="heading-title">
+    <div class="mb_12">
+        <?php if (!empty($settings['title-heding'])) : ?>
+        <h4 class="text_white fw-4 mb_4">
+            <a class="hover-underline-link link"><?php echo esc_html($settings['title-heding']); ?></a>
+        </h4>
+        <?php endif; ?>
 
-<?php if ($settings['style'] === 'style3') : ?>
+        <?php if (!empty($settings['description-heding'])) : ?>
+        <p class="text-caption-2 text_secondary-color font-3">
+            <?php echo esc_html($settings['description-heding']); ?>
+        </p>
+        <?php endif; ?>
+    </div>
+</div>
+
+
+<?php elseif ($settings['style'] === 'style3') : ?>
 <div class="heading-section style3 mb_47">
     <?php if (!empty($settings['heading'])) : ?>
     <div class="tag-heading text-uppercase text-label font-3 letter-spacing-1 mb_30">
@@ -332,7 +368,8 @@ $this->end_controls_section();
             <?php endif; ?>
             <span class="tf-text s1 cd-words-wrapper text_primary-color">
                 <?php $count=1; foreach ($settings['list'] as $item) : ?>
-                <span class="item-text <?php echo esc_attr($count==1 ? 'is-visible': ''); ?>"><?php echo esc_html($item['animate_text']); ?></span>
+                <span
+                    class="item-text <?php echo esc_attr($count==1 ? 'is-visible': ''); ?>"><?php echo esc_html($item['animate_text']); ?></span>
                 <?php $count++; endforeach; ?>
             </span>
             <?php if (!empty($settings['title-heding'])) : ?>
@@ -372,7 +409,8 @@ $this->end_controls_section();
             <?php endif; ?>
             <span class="tf-text s1 cd-words-wrapper text_primary-color">
                 <?php $count=1; foreach ($settings['list'] as $item) : ?>
-                <span class="item-text <?php echo esc_attr($count==1 ? 'is-visible': ''); ?>"><?php echo esc_html($item['animate_text']); ?></span>
+                <span
+                    class="item-text <?php echo esc_attr($count==1 ? 'is-visible': ''); ?>"><?php echo esc_html($item['animate_text']); ?></span>
                 <?php $count++; endforeach; ?>
             </span>
         </h4>

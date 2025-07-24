@@ -290,8 +290,8 @@ final class ThemesFlat_Addon_For_Elementor_zeng {
         // require_once( __DIR__ . '/widgets/widget-slides.php' );
         // \Elementor\Plugin::instance()->widgets_manager->register( new \TFSlides_Widget() );
 
-        // require_once( __DIR__ . '/widgets/widget-flex-post.php' );
-        // \Elementor\Plugin::instance()->widgets_manager->register( new \TFFlex_Posts_Widget() );
+        require_once( __DIR__ . '/widgets/tf-form.php' );
+        \Elementor\Plugin::instance()->widgets_manager->register( new \TFForm_Widget() );
 
         require_once( __DIR__ . '/widgets/widget-image-slider.php' );
         \Elementor\Plugin::instance()->widgets_manager->register( new \TFImage_slider_Widget() );
