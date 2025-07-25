@@ -39,7 +39,7 @@ class TFCall_Action_Widget extends \Elementor\Widget_Base {
 				'style1' => esc_html__('Style 1', 'themesflat-core'),
 				'style2' => esc_html__('Style 2', 'themesflat-core'),
 				'style3' => esc_html__('Style 3', 'themesflat-core'),
-                'style4' => esc_html__('Style 4', 'themesflat-core'),
+
 			],
 		]);
 
@@ -48,9 +48,6 @@ class TFCall_Action_Widget extends \Elementor\Widget_Base {
 			'type' => \Elementor\Controls_Manager::TEXT,
 			'default' => esc_html__('Resume', 'themesflat-core'),
 			'label_block' => true,
-            'condition' => [
-              'style!' => [ 'style4']
-            ],
 		]);
 
 		$this->add_control('description', [
@@ -58,9 +55,6 @@ class TFCall_Action_Widget extends \Elementor\Widget_Base {
 			'type' => \Elementor\Controls_Manager::TEXT,
 			'default' => esc_html__('Education & Experience', 'themesflat-core'),
 			'label_block' => true,
-             'condition' => [
-              'style!' => [ 'style4']
-            ],
 		]);
 
 		$repeater = new \Elementor\Repeater();
@@ -90,7 +84,7 @@ class TFCall_Action_Widget extends \Elementor\Widget_Base {
 			'default' => esc_html__('Empower Code Intelligence', 'themesflat-core'),
 			'label_block' => true,
 			'condition' => [
-              'style' => ['style2', 'style3', 'style4']
+              'style' => ['style2', 'style3']
             ],
 
 		]);
@@ -101,7 +95,7 @@ class TFCall_Action_Widget extends \Elementor\Widget_Base {
 			'default' => esc_html__('Hello! I\'m ZenG, an AI Developer with 10 years of experience...', 'themesflat-core'),
 			'label_block' => true,
 			'condition' => [
-    'style' => ['style2', 'style4']
+    'style' => ['style2']
 ],
 
 		]);
@@ -133,9 +127,6 @@ $this->add_control(
         'label' => esc_html__( 'Sub Title', 'themesflat-core' ),
         'type' => \Elementor\Controls_Manager::HEADING,
         'separator' => 'before',
-        'condition' => [
-            'style!' => ['style4'],
-        ],
     ]
 );
 
@@ -145,9 +136,6 @@ $this->add_group_control(
         'name' => 'heading_typography',
         'label' => esc_html__( 'Typography', 'themesflat-core' ),
         'selector' => '{{WRAPPER}} .tag-heading',
-        'condition' => [
-            'style!' => ['style4'],
-        ],
     ]
 );
 
@@ -159,9 +147,7 @@ $this->add_control(
         'selectors' => [
             '{{WRAPPER}} .tag-heading' => 'color: {{VALUE}};',
         ],
-        'condition' => [
-            'style!' => ['style4'],
-        ],
+
     ]
 );
 
@@ -174,9 +160,7 @@ $this->add_control(
         'selectors' => [
             '{{WRAPPER}} .tag-heading' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
         ],
-        'condition' => [
-            'style!' => ['style4'],
-        ],
+
     ]
 );
 
@@ -335,25 +319,8 @@ $this->end_controls_section();
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		?>
-<?php if ($settings['style'] === 'style4') : ?>
-<div class="heading-title">
-    <div class="mb_12">
-        <?php if (!empty($settings['title-heding'])) : ?>
-        <h4 class="text_white fw-4 mb_4">
-            <a class="hover-underline-link link"><?php echo esc_html($settings['title-heding']); ?></a>
-        </h4>
-        <?php endif; ?>
 
-        <?php if (!empty($settings['description-heding'])) : ?>
-        <p class="text-caption-2 text_secondary-color font-3">
-            <?php echo esc_html($settings['description-heding']); ?>
-        </p>
-        <?php endif; ?>
-    </div>
-</div>
-
-
-<?php elseif ($settings['style'] === 'style3') : ?>
+<?php if ($settings['style'] === 'style3') : ?>
 <div class="heading-section style3 mb_47">
     <?php if (!empty($settings['heading'])) : ?>
     <div class="tag-heading text-uppercase text-label font-3 letter-spacing-1 mb_30">
