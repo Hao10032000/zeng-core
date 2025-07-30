@@ -18,14 +18,14 @@
 
 	protected function register_controls() {
 
-	$repeater = new \Elementor\Repeater();
-
 	$this->start_controls_section(
         'partner_section',
         [
             'label' => esc_html__( 'Partner Logos', 'themesflat-core' ),
         ]
     );
+
+	$repeater = new \Elementor\Repeater();
 
     $repeater->add_control(
         'image',
@@ -93,8 +93,6 @@
             'label' => esc_html__( 'Partner Items', 'themesflat-core' ),
             'type' => \Elementor\Controls_Manager::REPEATER,
             'fields' => $repeater->get_controls(),
-            'default' => [],
-            'title_field' => '{{{ image.url }}}',
         ]
     );
 
