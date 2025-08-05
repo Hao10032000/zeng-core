@@ -113,7 +113,7 @@ $repeater->add_control(
         'placeholder' => esc_html__('https://your-link.com', 'themesflat-core'),
         'show_external' => true,
         'default'     => [
-            'url' => '',
+            'url' => '#',
         ],
     ]
 );
@@ -244,6 +244,85 @@ $this->add_control(
         'size_units' => [ 'px', '%', 'em' ],
         'selectors' => [
             '{{WRAPPER}} .heading-section .title,{{WRAPPER}} .heading-section' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+        ],
+    ]
+);
+$this->add_control(
+    'mail_style_heading',
+    [
+        'label' => esc_html__( 'Title Mail', 'themesflat-core' ),
+        'type' => \Elementor\Controls_Manager::HEADING,
+        'separator' => 'before',
+    ]
+);
+$this->add_group_control(
+    \Elementor\Group_Control_Typography::get_type(),
+    [
+        'name' => 'mail_typography',
+        'label' => esc_html__( 'Typography', 'themesflat-core' ),
+        'selector' => '{{WRAPPER}} .heading-section .hover-underline-link',
+    ]
+);
+
+$this->add_control(
+    'mail_color',
+    [
+        'label' => esc_html__( 'Color', 'themesflat-core' ),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .heading-section .hover-underline-link' => 'color: {{VALUE}};',
+        ],
+    ]
+);
+
+$this->add_control(
+    'mail_margin',
+    [
+        'label' => esc_html__( 'Margin', 'themesflat-core' ),
+        'type' => \Elementor\Controls_Manager::DIMENSIONS,
+        'size_units' => [ 'px', '%', 'em' ],
+        'selectors' => [
+            '{{WRAPPER}} .heading-section .hover-underline-link' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+        ],
+    ]
+);
+
+$this->add_control(
+    'address_style_heading',
+    [
+        'label' => esc_html__( 'Title Address', 'themesflat-core' ),
+        'type' => \Elementor\Controls_Manager::HEADING,
+        'separator' => 'before',
+    ]
+);
+$this->add_group_control(
+    \Elementor\Group_Control_Typography::get_type(),
+    [
+        'name' => 'address_typography',
+        'label' => esc_html__( 'Typography', 'themesflat-core' ),
+        'selector' => '{{WRAPPER}} .heading-section .text-caption-2',
+    ]
+);
+
+$this->add_control(
+    'address_color',
+    [
+        'label' => esc_html__( 'Color', 'themesflat-core' ),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .heading-section .text-caption-2' => 'color: {{VALUE}};',
+        ],
+    ]
+);
+
+$this->add_control(
+    'address_margin',
+    [
+        'label' => esc_html__( 'Margin', 'themesflat-core' ),
+        'type' => \Elementor\Controls_Manager::DIMENSIONS,
+        'size_units' => [ 'px', '%', 'em' ],
+        'selectors' => [
+            '{{WRAPPER}} .heading-section .text-caption-2' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
         ],
     ]
 );

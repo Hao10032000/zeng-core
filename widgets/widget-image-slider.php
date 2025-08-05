@@ -88,13 +88,148 @@
     );
 
     $this->add_control(
-        'partner_list',
-        [
-            'label' => esc_html__( 'Partner Items', 'themesflat-core' ),
-            'type' => \Elementor\Controls_Manager::REPEATER,
-            'fields' => $repeater->get_controls(),
-        ]
-    );
+    'partner_list',
+    [
+        'label' => esc_html__( 'Partner Items', 'themesflat-core' ),
+        'type' => \Elementor\Controls_Manager::REPEATER,
+        'fields' => $repeater->get_controls(),
+        'default' => [
+            [
+                'image' => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
+                'link' => [
+                    'url' => 'https://example.com',
+                ],
+                'size_class' => 'sz-100',
+                'scroll_effect' => '',
+                'delay' => '',
+            ],
+            [
+                'image' => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
+                'link' => [
+                    'url' => 'https://example.org',
+                ],
+                'size_class' => 'sz-80',
+                'scroll_effect' => 'scrolling-effect effectZoomIn',
+                'delay' => '0.3',
+            ],
+            [
+                'image' => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
+                'link' => [
+                    'url' => 'https://example.org',
+                ],
+                'size_class' => 'sz-80',
+                'scroll_effect' => 'scrolling-effect effectZoomIn',
+                'delay' => '0.3',
+            ],
+            [
+                'image' => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
+                'link' => [
+                    'url' => 'https://example.org',
+                ],
+                'size_class' => 'sz-60',
+                'scroll_effect' => 'scrolling-effect effectZoomIn',
+                'delay' => '0.3',
+            ],
+            [
+                'image' => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
+                'link' => [
+                    'url' => 'https://example.org',
+                ],
+                'size_class' => 'sz-60',
+                'scroll_effect' => 'scrolling-effect effectZoomIn',
+                'delay' => '0.3',
+            ],
+            [
+                'image' => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
+                'link' => [
+                    'url' => 'https://example.org',
+                ],
+                'size_class' => 'sz-100',
+                'scroll_effect' => 'scrolling-effect effectZoomIn',
+                'delay' => '0.3',
+            ],
+            [
+                'image' => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
+                'link' => [
+                    'url' => 'https://example.org',
+                ],
+                'size_class' => 'sz-200',
+                'scroll_effect' => 'scrolling-effect effectZoomIn',
+                'delay' => '0.3',
+            ],
+            [
+                'image' => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
+                'link' => [
+                    'url' => 'https://example.org',
+                ],
+                'size_class' => 'sz-160',
+                'scroll_effect' => 'scrolling-effect effectZoomIn',
+                'delay' => '0.3',
+            ],
+            [
+                'image' => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
+                'link' => [
+                    'url' => 'https://example.org',
+                ],
+                'size_class' => 'sz-120',
+                'scroll_effect' => 'scrolling-effect effectZoomIn',
+                'delay' => '0.3',
+            ],
+            [
+                'image' => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
+                'link' => [
+                    'url' => 'https://example.org',
+                ],
+                'size_class' => 'sz-120',
+                'scroll_effect' => 'scrolling-effect effectZoomIn',
+                'delay' => '0.3',
+            ],
+            [
+                'image' => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
+                'link' => [
+                    'url' => 'https://example.org',
+                ],
+                'size_class' => 'sz-100',
+                'scroll_effect' => 'scrolling-effect effectZoomIn',
+                'delay' => '0.3',
+            ],
+            [
+                'image' => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                ],
+                'link' => [
+                    'url' => 'https://example.org',
+                ],
+                'size_class' => 'sz-80',
+                'scroll_effect' => 'scrolling-effect effectZoomIn',
+                'delay' => '0.3',
+            ],
+        ],
+    ]
+);
+
 
 
     $this->end_controls_section();

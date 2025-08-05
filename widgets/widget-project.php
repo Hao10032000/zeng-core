@@ -97,35 +97,41 @@ class TFProject_Widget extends \Elementor\Widget_Base {
 
 
 			$this->add_control(
-				'list',
-				[
-					'label' => esc_html__( 'List', 'themesflat-core' ),
-					'type' => \Elementor\Controls_Manager::REPEATER,
-					'fields' => $repeater->get_controls(),
-					'default' => [
-						[
-							'title' => esc_html__( 'AI-Powered Chatbot', 'themesflat-core' ),
-							'description' => esc_html__( 'Saas Dashboard', 'themesflat-core' ),
-						],
-                        [
-							'title' => esc_html__( 'AI-Powered Chatbot', 'themesflat-core' ),
-							'description' => esc_html__( 'Saas Dashboard', 'themesflat-core' ),
-						],
-                        [
-							'title' => esc_html__( 'AI-Powered Chatbot', 'themesflat-core' ),
-							'description' => esc_html__( 'Saas Dashboard', 'themesflat-core' ),
-						],
-                        [
-							'title' => esc_html__( 'AI-Powered Chatbot', 'themesflat-core' ),
-							'description' => esc_html__( 'Saas Dashboard', 'themesflat-core' ),
-						],
-                        [
-							'title' => esc_html__( 'AI-Powered Chatbot', 'themesflat-core' ),
-							'description' => esc_html__( 'Saas Dashboard', 'themesflat-core' ),
-						],
-					],
-				]
-			);
+	'list',
+	[
+		'label' => esc_html__( 'List', 'themesflat-core' ),
+		'type' => \Elementor\Controls_Manager::REPEATER,
+		'fields' => $repeater->get_controls(),
+		'default' => [
+			[
+				'image_thumb' => [ 'url' => \Elementor\Utils::get_placeholder_image_src() ],
+				'title' => esc_html__( 'AI-Powered Chatbot 1', 'themesflat-core' ),
+				'description' => esc_html__( 'Saas Dashboard 1', 'themesflat-core' ),
+				'link_button' => [ 'url' => 'https://example.com/1' ],
+			],
+			[
+				'image_thumb' => [ 'url' => \Elementor\Utils::get_placeholder_image_src() ],
+				'title' => esc_html__( 'AI-Powered Chatbot 2', 'themesflat-core' ),
+				'description' => esc_html__( 'Saas Dashboard 2', 'themesflat-core' ),
+				'link_button' => [ 'url' => 'https://example.com/2' ],
+			],
+			[
+				'image_thumb' => [ 'url' => \Elementor\Utils::get_placeholder_image_src() ],
+				'title' => esc_html__( 'AI-Powered Chatbot 3', 'themesflat-core' ),
+				'description' => esc_html__( 'Saas Dashboard 3', 'themesflat-core' ),
+				'link_button' => [ 'url' => 'https://example.com/3' ],
+			],
+			[
+				'image_thumb' => [ 'url' => \Elementor\Utils::get_placeholder_image_src() ],
+				'title' => esc_html__( 'AI-Powered Chatbot 4', 'themesflat-core' ),
+				'description' => esc_html__( 'Saas Dashboard 4', 'themesflat-core' ),
+				'link_button' => [ 'url' => 'https://example.com/4' ],
+			],
+
+		],
+	]
+);
+
 
 	        
 			$this->end_controls_section();
@@ -133,76 +139,104 @@ class TFProject_Widget extends \Elementor\Widget_Base {
 	}
 
 	protected function render($instance = []) {
-		$settings = $this->get_settings_for_display();
-        ?>
-<?php if ( $settings['style'] == 'style1' ){ ?>
-<div class="tabs-content-wrap tf-grid-layout md-col-2">
-			<?php $count=1;  foreach ( $settings['list'] as $index => $item ): 
-                       				 $image_thumb = $item['image_thumb'];
-                                        if ( ! empty( $image_thumb['id'] ) ) {
-                                            $image_url = \Elementor\Group_Control_Image_Size::get_attachment_image_src(
-                                                $image_thumb['id'],
-                                                'thumbnail', 
-                                                $settings 
-                                            );
-                                        } else {
-                                            $image_url = ''; 
-                                        }
-                ?>
-                        <div class="portfolio-item">
-                            <a href="<?php echo esc_url($item['link_button']['url']);?>" data-fancybox="gallery" class="img-style">
-								<?php if ( $image_url ) {
-                                echo '<img src="' . esc_url( $image_url ) . '" alt="thumb">';
-                            } ?>                             
-                                <div class="tag font-3 text-label text-uppercase fw-6 letter-spacing-1">
-                                    <?php echo esc_html($item['description']); ?>
-                                </div>
-                            </a>
-                            <h5 class=" title font-4 text_white"><a href="<?php echo esc_url($item['link_button']['url']);?>" class="link"><?php echo esc_html($item['title']); ?></a>
-                            </h5>
-                            <div class="item-shape">
-                                <img src="<?php echo esc_url(URL_THEMESFLAT_ADDONS_ELEMENTOR_THEME . "assets/img/small-comet.webp"); ?>" loading="lazy" decoding="async" alt="item">
-                            </div>
-                        </div>
-				<?php $count++; endforeach; ?>
-        </div>
+    $settings = $this->get_settings_for_display();
 
-<?php
-} else { ?>
-<div id="portfolio" class="section-portfolio spacing-1 stack-element section">
-<div class="tabs-content-wrap">
-			<?php $count=1;  foreach ( $settings['list'] as $index => $item ): 
-                       				 $image_thumb = $item['image_thumb'];
-                                        if ( ! empty( $image_thumb['id'] ) ) {
-                                            $image_url = \Elementor\Group_Control_Image_Size::get_attachment_image_src(
-                                                $image_thumb['id'],
-                                                'thumbnail', 
-                                                $settings 
-                                            );
-                                        } else {
-                                            $image_url = ''; 
-                                        }
+    if (empty($settings['list']) || !is_array($settings['list'])) {
+        echo '<p>' . esc_html__('No items found. Please add some content in the widget settings.', 'themesflat-core') . '</p>';
+        return;
+    }
+
+ 
+    $fallback_image_url = esc_url(get_stylesheet_directory_uri() . '/images/placeholder-2.jpg');
+
+    if (!empty($settings['style']) && $settings['style'] === 'style1') {
+        ?>
+        <div class="tabs-content-wrap tf-grid-layout md-col-2">
+            <?php
+            foreach ($settings['list'] as $item):
+                $image_url = '';
+
+                if (!empty($item['image_thumb']['id'])) {
+                    $image_url = \Elementor\Group_Control_Image_Size::get_attachment_image_src(
+                        $item['image_thumb']['id'],
+                        'thumbnail',
+                        $settings
+                    );
+                }
+                if (empty($image_url)) {
+                    $image_url = $fallback_image_url;
+                }
+
+                $link_url = !empty($item['link_button']['url']) ? $item['link_button']['url'] : '#';
+                $title = !empty($item['title']) ? $item['title'] : '';
+                $description = !empty($item['description']) ? $item['description'] : '';
                 ?>
-                        <div class="portfolio-item element">
-                            <a href="<?php echo esc_url($image_url);?>" data-fancybox="gallery" class="img-style">
-								<?php if ( $image_url ) {
-                                echo '<img src="' . esc_url( $image_url ) . '" alt="thumb">';
-                            } ?>                             
-                                <div class="tag font-3 text-label text-uppercase fw-6 letter-spacing-1">
-                                    <?php echo esc_html($item['description']); ?>
-                                </div>
-                            </a>
-                            <h5 class=" title font-4 text_white"><a href="<?php echo esc_url($item['link_button']['url']);?>" class="link"><?php echo esc_html($item['title']); ?></a>
-                            </h5>
-                            <div class="item-shape">
-                                <img src="<?php echo esc_url(URL_THEMESFLAT_ADDONS_ELEMENTOR_THEME . "assets/img/small-comet.webp"); ?>" loading="lazy" decoding="async" alt="item">
-                            </div>
+                <div class="portfolio-item">
+                    <a href="<?php echo esc_url($link_url); ?>" data-fancybox="gallery" class="img-style">
+                        <img src="<?php echo esc_url($image_url); ?>" alt="thumb">
+                        <div class="tag font-3 text-label text-uppercase fw-6 letter-spacing-1">
+                            <?php echo esc_html($description); ?>
                         </div>
-				<?php $count++; endforeach; ?>
+                    </a>
+                    <h5 class="title font-4 text_white">
+                        <a href="<?php echo esc_url($link_url); ?>" class="link">
+                            <?php echo esc_html($title); ?>
+                        </a>
+                    </h5>
+                    <div class="item-shape">
+                        <img src="<?php echo esc_url(URL_THEMESFLAT_ADDONS_ELEMENTOR_THEME . "assets/img/small-comet.webp"); ?>"
+                             loading="lazy" decoding="async" alt="item">
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
-    </div>
-<?php
-		}
+        <?php
+    } else {
+        ?>
+        <div id="portfolio" class="section-portfolio spacing-1 stack-element section">
+            <div class="tabs-content-wrap">
+                <?php
+                foreach ($settings['list'] as $item):
+                    $image_url = '';
+
+                    if (!empty($item['image_thumb']['id'])) {
+                        $image_url = \Elementor\Group_Control_Image_Size::get_attachment_image_src(
+                            $item['image_thumb']['id'],
+                            'thumbnail',
+                            $settings
+                        );
+                    }
+
+                    if (empty($image_url)) {
+                        $image_url = $fallback_image_url;
+                    }
+
+                    $link_url = !empty($item['link_button']['url']) ? $item['link_button']['url'] : '#';
+                    $title = !empty($item['title']) ? $item['title'] : '';
+                    $description = !empty($item['description']) ? $item['description'] : '';
+                    ?>
+                    <div class="portfolio-item element">
+                        <a href="<?php echo esc_url($image_url); ?>" data-fancybox="gallery" class="img-style">
+                            <img src="<?php echo esc_url($image_url); ?>" alt="thumb">
+                            <div class="tag font-3 text-label text-uppercase fw-6 letter-spacing-1">
+                                <?php echo esc_html($description); ?>
+                            </div>
+                        </a>
+                        <h5 class="title font-4 text_white">
+                            <a href="<?php echo esc_url($link_url); ?>" class="link">
+                                <?php echo esc_html($title); ?>
+                            </a>
+                        </h5>
+                        <div class="item-shape">
+                            <img src="<?php echo esc_url(URL_THEMESFLAT_ADDONS_ELEMENTOR_THEME . "assets/img/small-comet.webp"); ?>"
+                                 loading="lazy" decoding="async" alt="item">
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php
+    }
 }
 
 }
