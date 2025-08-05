@@ -17,14 +17,6 @@ class TFProject_Widget extends \Elementor\Widget_Base {
         return [ 'themesflat_addons' ];
     }
 
-    public function get_style_depends() {
-		return ['tf-step'];
-	}
-
-	public function get_script_depends() {
-		return ['tf-step'];
-	}
-
 	protected function register_controls() {
 		// Start List Setting        
 			$this->start_controls_section( 'section_setting',

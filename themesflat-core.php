@@ -32,7 +32,6 @@ $theme = wp_get_theme();
 
 if ( 'zeng' == $theme->name || 'zeng' == $theme->parent_theme ) {
     require THEMESFLAT_PATH . "/widgets/themesflat_recent_post.php";
-    require_once plugin_dir_path( __FILE__ ).'/user-option.php';
 }
 
 
