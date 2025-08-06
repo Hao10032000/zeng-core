@@ -83,6 +83,7 @@ class TFTabs_Widget extends \Elementor\Widget_Base {
             ],
         ]
     );
+    
 
     $this->start_controls_section(
         'content_tabs_section',
@@ -102,6 +103,55 @@ class TFTabs_Widget extends \Elementor\Widget_Base {
             'title_field' => '{{{ list_title }}}',
         ]
     );
+    
+    $this->add_control(
+    'tab_list',
+    [
+        'label' => esc_html__( 'Tab Items', 'themesflat-core' ),
+        'type' => \Elementor\Controls_Manager::REPEATER,
+        'fields' => $repeater->get_controls(),
+        'default' => [
+            [
+                'list_title'   => esc_html__( 'Basic Plan', 'themesflat-core' ),
+                'description'  => esc_html__( 'Perfect for individuals.', 'themesflat-core' ),
+                'list_price'   => '29',
+                'list_per'     => '/month',
+                'title-btn'    => esc_html__( 'Get Started', 'themesflat-core' ),
+                'link_button'  => [
+                    'url' => '#',
+                    'is_external' => false,
+                    'nofollow' => false,
+                ],
+            ],
+            [
+                'list_title'   => esc_html__( 'Standard Plan', 'themesflat-core' ),
+                'description'  => esc_html__( 'Ideal for small teams.', 'themesflat-core' ),
+                'list_price'   => '59',
+                'list_per'     => '/month',
+                'title-btn'    => esc_html__( 'Choose Plan', 'themesflat-core' ),
+                'link_button'  => [
+                    'url' => '#',
+                    'is_external' => false,
+                    'nofollow' => false,
+                ],
+            ],
+            [
+                'list_title'   => esc_html__( 'Premium Plan', 'themesflat-core' ),
+                'description'  => esc_html__( 'Best for businesses.', 'themesflat-core' ),
+                'list_price'   => '99',
+                'list_per'     => '/month',
+                'title-btn'    => esc_html__( 'Start Now', 'themesflat-core' ),
+                'link_button'  => [
+                    'url' => '#',
+                    'is_external' => false,
+                    'nofollow' => false,
+                ],
+            ],
+        ],
+        'title_field' => '{{{ list_title }}}',
+    ]
+);
+
 
 	
 	    $this->end_controls_section();

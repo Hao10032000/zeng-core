@@ -127,6 +127,80 @@ class TFProject_Widget extends \Elementor\Widget_Base {
 
 	        
 			$this->end_controls_section();
+
+            
+          $this->start_controls_section(
+    'section_portfolio_style',
+    [
+        'label' => esc_html__('Portfolio Item Style', 'themesflat-core'),
+        'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+    ]
+);
+
+// Image Height
+$this->add_responsive_control(
+    'image_thumb_height',
+    [
+        'label' => esc_html__('Image Height', 'themesflat-core'),
+        'type' => \Elementor\Controls_Manager::SLIDER,
+        'size_units' => ['px', '%', 'vh'],
+        'range' => [
+            'px' => [
+                'min' => 50,
+                'max' => 1000,
+            ],
+        ],
+        'selectors' => [
+            '{{WRAPPER}} .portfolio-item .img-style img' => 'height: {{SIZE}}{{UNIT}}; object-fit: cover;',
+        ],
+    ]
+);
+
+// Title Typography
+$this->add_group_control(
+    \Elementor\Group_Control_Typography::get_type(),
+    [
+        'name' => 'title_typography',
+        'label' => esc_html__('Title Typography', 'themesflat-core'),
+        'selector' => '{{WRAPPER}} .portfolio-item .title',
+    ]
+);
+
+$this->add_control(
+    'title_color',
+    [
+        'label' => esc_html__('Title Color', 'themesflat-core'),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .portfolio-item .title' => 'color: {{VALUE}};',
+        ],
+    ]
+);
+
+// Description Typography
+$this->add_group_control(
+    \Elementor\Group_Control_Typography::get_type(),
+    [
+        'name' => 'description_typography',
+        'label' => esc_html__('Description Typography', 'themesflat-core'),
+        'selector' => '{{WRAPPER}} .portfolio-item .tag',
+    ]
+);
+
+$this->add_control(
+    'description_color',
+    [
+        'label' => esc_html__('Description Color', 'themesflat-core'),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .portfolio-item .tag' => 'color: {{VALUE}};',
+        ],
+    ]
+);
+
+$this->end_controls_section();
+
+
         // /.End List Setting              
 	}
 
@@ -143,8 +217,8 @@ class TFProject_Widget extends \Elementor\Widget_Base {
 
     if (!empty($settings['style']) && $settings['style'] === 'style1') {
         ?>
-        <div class="tabs-content-wrap tf-grid-layout md-col-2">
-            <?php
+<div class="tabs-content-wrap tf-grid-layout md-col-2">
+    <?php
             foreach ($settings['list'] as $item):
                 $image_url = '';
 
@@ -163,31 +237,31 @@ class TFProject_Widget extends \Elementor\Widget_Base {
                 $title = !empty($item['title']) ? $item['title'] : '';
                 $description = !empty($item['description']) ? $item['description'] : '';
                 ?>
-                <div class="portfolio-item">
-                    <a href="<?php echo esc_url($link_url); ?>" data-fancybox="gallery" class="img-style">
-                        <img src="<?php echo esc_url($image_url); ?>" alt="thumb">
-                        <div class="tag font-3 text-label text-uppercase fw-6 letter-spacing-1">
-                            <?php echo esc_html($description); ?>
-                        </div>
-                    </a>
-                    <h5 class="title font-4 text_white">
-                        <a href="<?php echo esc_url($link_url); ?>" class="link">
-                            <?php echo esc_html($title); ?>
-                        </a>
-                    </h5>
-                    <div class="item-shape">
-                        <img src="<?php echo esc_url(URL_THEMESFLAT_ADDONS_ELEMENTOR_THEME . "assets/img/small-comet.webp"); ?>"
-                             loading="lazy" decoding="async" alt="item">
-                    </div>
-                </div>
-            <?php endforeach; ?>
+    <div class="portfolio-item">
+        <a href="<?php echo esc_url($link_url); ?>" data-fancybox="gallery" class="img-style">
+            <img src="<?php echo esc_url($image_url); ?>" alt="thumb">
+            <div class="tag font-3 text-label text-uppercase fw-6 letter-spacing-1">
+                <?php echo esc_html($description); ?>
+            </div>
+        </a>
+        <h5 class="title font-4 text_white">
+            <a href="<?php echo esc_url($link_url); ?>" class="link">
+                <?php echo esc_html($title); ?>
+            </a>
+        </h5>
+        <div class="item-shape">
+            <img src="<?php echo esc_url(URL_THEMESFLAT_ADDONS_ELEMENTOR_THEME . "assets/img/small-comet.webp"); ?>"
+                loading="lazy" decoding="async" alt="item">
         </div>
-        <?php
+    </div>
+    <?php endforeach; ?>
+</div>
+<?php
     } else {
         ?>
-        <div id="portfolio" class="section-portfolio spacing-1 stack-element section">
-            <div class="tabs-content-wrap">
-                <?php
+<div id="portfolio" class="section-portfolio spacing-1 stack-element section">
+    <div class="tabs-content-wrap">
+        <?php
                 foreach ($settings['list'] as $item):
                     $image_url = '';
 
@@ -207,27 +281,27 @@ class TFProject_Widget extends \Elementor\Widget_Base {
                     $title = !empty($item['title']) ? $item['title'] : '';
                     $description = !empty($item['description']) ? $item['description'] : '';
                     ?>
-                    <div class="portfolio-item element">
-                        <a href="<?php echo esc_url($image_url); ?>" data-fancybox="gallery" class="img-style">
-                            <img src="<?php echo esc_url($image_url); ?>" alt="thumb">
-                            <div class="tag font-3 text-label text-uppercase fw-6 letter-spacing-1">
-                                <?php echo esc_html($description); ?>
-                            </div>
-                        </a>
-                        <h5 class="title font-4 text_white">
-                            <a href="<?php echo esc_url($link_url); ?>" class="link">
-                                <?php echo esc_html($title); ?>
-                            </a>
-                        </h5>
-                        <div class="item-shape">
-                            <img src="<?php echo esc_url(URL_THEMESFLAT_ADDONS_ELEMENTOR_THEME . "assets/img/small-comet.webp"); ?>"
-                                 loading="lazy" decoding="async" alt="item">
-                        </div>
-                    </div>
-                <?php endforeach; ?>
+        <div class="portfolio-item element">
+            <a href="<?php echo esc_url($image_url); ?>" data-fancybox="gallery" class="img-style">
+                <img src="<?php echo esc_url($image_url); ?>" alt="thumb">
+                <div class="tag font-3 text-label text-uppercase fw-6 letter-spacing-1">
+                    <?php echo esc_html($description); ?>
+                </div>
+            </a>
+            <h5 class="title font-4 text_white">
+                <a href="<?php echo esc_url($link_url); ?>" class="link">
+                    <?php echo esc_html($title); ?>
+                </a>
+            </h5>
+            <div class="item-shape">
+                <img src="<?php echo esc_url(URL_THEMESFLAT_ADDONS_ELEMENTOR_THEME . "assets/img/small-comet.webp"); ?>"
+                    loading="lazy" decoding="async" alt="item">
             </div>
         </div>
-        <?php
+        <?php endforeach; ?>
+    </div>
+</div>
+<?php
     }
 }
 

@@ -235,39 +235,53 @@
     $this->end_controls_section();
  
 }
-	
+
 protected function render() {
     $settings = $this->get_settings_for_display();
 
     if ( ! empty( $settings['partner_list'] ) ) {
-		  echo '<div class="section-partner">';
+        echo '<div class="section-partner">';
         echo '<div class="swiper tf-sw-partner wrap-partner position-2" data-preview="8" data-tablet="8"
                 data-mobile-sm="6" data-mobile="4" data-space="15" data-space-md="30"
                 data-space-lg="30"><div class="swiper-wrapper">';
 
         foreach ( $settings['partner_list'] as $index => $item ) {
-            $link_open = '<a href="#">';
-            $link_close = '</a>';
+            // Scroll effect và delay
+            $scroll_class = ! empty( $item['scroll_effect'] ) ? $item['scroll_effect'] : '';
+            $delay_attr = ! empty( $item['delay'] ) ? ' data-delay="' . esc_attr( $item['delay'] ) . '"' : '';
+
+            // Lấy ảnh hoặc fallback
+            $image_url = ! empty( $item['image']['url'] ) 
+                ? esc_url( $item['image']['url'] ) 
+                : esc_url( plugins_url( 'assets/img/logo.png', plugin_dir_path( __FILE__ ) ) );
+
+            // Bắt đầu slide
+            echo '<div class="swiper-slide">';
+
+            // Nếu có link, tạo <a>
             if ( ! empty( $item['link']['url'] ) ) {
                 $this->add_link_attributes( 'partner_link_' . $index, $item['link'] );
-                $link_open = '<a ' . $this->get_render_attribute_string( 'partner_link_' . $index ) . '>';
+                echo '<a ' . $this->get_render_attribute_string( 'partner_link_' . $index ) . '>';
             }
 
-            $scroll_class = $item['scroll_effect'] ? $item['scroll_effect'] : '';
-            $delay_attr = $item['delay'] ? ' data-delay="' . esc_attr( $item['delay'] ) . '"' : '';
+            // Nội dung item
+            echo '<div class="partner-item item-' . ($index + 1) . ' ' . esc_attr( $item['size_class'] ) . ' ' . esc_attr( $scroll_class ) . '"' . $delay_attr . '>';
+            echo '<img src="' . $image_url . '" alt="partner">';
+            echo '<div class="item-shape"><img src="' . esc_url( plugins_url( 'assets/img/small-comet.webp', plugin_dir_path( __FILE__ ) ) ) . '" loading="lazy" decoding="async" alt="item"></div>';
+            echo '</div>';
 
-            echo '<div class="swiper-slide">';
-            echo $link_open;
-            echo '<div class="partner-item item-' . ($index+1) . ' ' . esc_attr( $item['size_class'] ) . ' ' . esc_attr($scroll_class) . '"' . $delay_attr . '>';
-            echo '<img src="' . esc_url( $item['image']['url'] ) . '" alt="partner">';
-           echo '<div class="item-shape"><img src="' . esc_url( plugins_url( 'assets/img/small-comet.webp', plugin_dir_path( __FILE__ ) ) ) . '" loading="lazy" decoding="async" alt="item"></div>';
-            echo '</div>';
-            echo $link_close;
-            echo '</div>';
+            // Đóng </a> nếu có link
+            if ( ! empty( $item['link']['url'] ) ) {
+                echo '</a>';
+            }
+
+            echo '</div>'; // end .swiper-slide
         }
 
         echo '</div></div></div>';
     }
 }
+
+
 
 }

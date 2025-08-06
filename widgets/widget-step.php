@@ -125,7 +125,138 @@ class TFListStep_Widget extends \Elementor\Widget_Base {
 
 	        
 			$this->end_controls_section();
-        // /.End List Setting              
+        // /.End List Setting   
+		
+		$this->start_controls_section(
+    'section_style_box',
+    [
+        'label' => esc_html__('Box Style', 'themesflat-core'),
+        'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+    ]
+);
+
+// Content: Background Color
+$this->add_control(
+    'content_bg_color',
+    [
+        'label' => esc_html__('Content Background Color', 'themesflat-core'),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .education-item' => 'background-color: {{VALUE}};',
+        ],
+    ]
+);
+
+// Content: Background Color Hover
+$this->add_control(
+    'content_bg_hover_color',
+    [
+        'label' => esc_html__('Content Background Hover', 'themesflat-core'),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .wrap-education-item:hover .education-item' => 'background-color: {{VALUE}};',
+        ],
+    ]
+);
+
+// Content: Border Radius
+$this->add_control(
+    'content_border_radius',
+    [
+        'label' => esc_html__('Border Radius', 'themesflat-core'),
+        'type' => \Elementor\Controls_Manager::SLIDER,
+        'range' => [
+            'px' => [
+                'min' => 0,
+                'max' => 100,
+            ],
+        ],
+        'selectors' => [
+            '{{WRAPPER}} .education-item' => 'border-radius: {{SIZE}}{{UNIT}};',
+        ],
+    ]
+);
+
+// Title: Color
+$this->add_control(
+    'title_color',
+    [
+        'label' => esc_html__('Title Color', 'themesflat-core'),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .education-item .content h5' => 'color: {{VALUE}};',
+        ],
+    ]
+);
+
+// Title: Typography
+$this->add_group_control(
+    \Elementor\Group_Control_Typography::get_type(),
+    [    
+		'label' => esc_html__('Title Typography', 'themesflat-core'),
+        'name' => 'title_typography',
+        'selector' => '{{WRAPPER}} .education-item .content h5',
+    ]
+);
+
+// Description: Color
+$this->add_control(
+    'desc_color',
+    [
+        'label' => esc_html__('Description Color', 'themesflat-core'),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .education-item .content span' => 'color: {{VALUE}};',
+        ],
+    ]
+);
+
+// Description: Typography
+$this->add_group_control(
+    \Elementor\Group_Control_Typography::get_type(),
+    [
+		'label' => esc_html__('Description Typography', 'themesflat-core'),
+        'name' => 'desc_typography',
+        'selector' => '{{WRAPPER}} .education-item .content span',
+    ]
+);
+
+// Number Step: Color
+$this->add_control(
+    'number_step_color',
+    [
+        'label' => esc_html__('Number Step Color', 'themesflat-core'),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .education-item .date' => 'color: {{VALUE}};',
+        ],
+    ]
+);
+
+// Number Step: Background
+$this->add_control(
+    'number_step_bg',
+    [
+        'label' => esc_html__('Number Step Background', 'themesflat-core'),
+        'type' => \Elementor\Controls_Manager::COLOR,
+        'selectors' => [
+            '{{WRAPPER}} .education-item .date' => 'background-color: {{VALUE}};',
+        ],
+    ]
+);
+
+// Number Step: Typography
+$this->add_group_control(
+    \Elementor\Group_Control_Typography::get_type(),
+    [
+		'label' => esc_html__('Number Step Typography', 'themesflat-core'),
+        'name' => 'number_step_typography',
+        'selector' => '{{WRAPPER}} .education-item .date',
+    ]
+);
+
+$this->end_controls_section();
+
 	}
 
 	protected function render($instance = []) {
