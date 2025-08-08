@@ -218,28 +218,26 @@ $this->end_controls_section();
     if (!empty($settings['style']) && $settings['style'] === 'style1') {
         ?>
 <div class="tabs-content-wrap tf-grid-layout md-col-2">
-    <?php
-            foreach ($settings['list'] as $item):
-                $image_url = '';
+    <?php foreach ($settings['list'] as $item): 
+        $image_url = '';
+        if (!empty($item['image_thumb']['id'])) {
+            $image_url = \Elementor\Group_Control_Image_Size::get_attachment_image_src(
+                $item['image_thumb']['id'],
+                'thumbnail',
+                $settings
+            );
+        }
+        if (empty($image_url)) {
+            $image_url = $fallback_image_url;
+        }
 
-                if (!empty($item['image_thumb']['id'])) {
-                    $image_url = \Elementor\Group_Control_Image_Size::get_attachment_image_src(
-                        $item['image_thumb']['id'],
-                        'thumbnail',
-                        $settings
-                    );
-                }
-                if (empty($image_url)) {
-                    $image_url = $fallback_image_url;
-                }
-
-                $link_url = !empty($item['link_button']['url']) ? $item['link_button']['url'] : '#';
-                $title = !empty($item['title']) ? $item['title'] : '';
-                $description = !empty($item['description']) ? $item['description'] : '';
-                ?>
-    <div class="portfolio-item">
-        <a href="<?php echo esc_url($link_url); ?>" data-fancybox="gallery" class="img-style">
-            <img src="<?php echo esc_url($image_url); ?>" alt="thumb">
+        $link_url   = !empty($item['link_button']['url']) ? $item['link_button']['url'] : '#';
+        $title      = !empty($item['title']) ? $item['title'] : '';
+        $description= !empty($item['description']) ? $item['description'] : '';
+    ?>
+    <div class="portfolio-item element">
+        <a href="<?php echo esc_url($link_url); ?>" class="img-style">
+            <img src="<?php echo esc_url($image_url); ?>" alt="thumb" loading="lazy" decoding="async">
             <div class="tag font-3 text-label text-uppercase fw-6 letter-spacing-1">
                 <?php echo esc_html($description); ?>
             </div>
@@ -259,7 +257,7 @@ $this->end_controls_section();
 <?php
     } else {
         ?>
-<div id="portfolio" class="section-portfolio spacing-1 stack-element section">
+<div class="section-portfolio spacing-1 stack-element section">
     <div class="tabs-content-wrap">
         <?php
                 foreach ($settings['list'] as $item):
@@ -282,7 +280,7 @@ $this->end_controls_section();
                     $description = !empty($item['description']) ? $item['description'] : '';
                     ?>
         <div class="portfolio-item element">
-            <a href="<?php echo esc_url($image_url); ?>" data-fancybox="gallery" class="img-style">
+            <a href="<?php echo esc_url($image_url); ?>" class="img-style">
                 <img src="<?php echo esc_url($image_url); ?>" alt="thumb">
                 <div class="tag font-3 text-label text-uppercase fw-6 letter-spacing-1">
                     <?php echo esc_html($description); ?>
