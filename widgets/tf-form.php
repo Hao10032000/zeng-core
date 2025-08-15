@@ -362,8 +362,8 @@ protected function render() {
                 <div class="heading-title">
                     <div class="mb_12">
                         <?php if (!empty($settings['description-heding'])) : ?>
-                        <h4 class="text_white fw-4 mb_4"><a class="hover-underline-link link">
-                                <?php echo esc_html($settings['title-heding']); ?></a>
+                        <h4 class="text_white fw-4 mb_4">
+                            <a class="hover-underline-link link" href="mailto:<?php echo esc_attr($settings['title-heding']); ?>"><?php echo esc_html($settings['title-heding']); ?></a>
                         </h4>
                         <?php endif; ?>
                         <?php if (!empty($settings['description-heding'])) : ?>
@@ -433,7 +433,7 @@ protected function render() {
         <div class="heading-title d-flex justify-content-between align-items-center mb_32">
             <div>
                 <?php if (!empty($settings['description-heding'])) : ?>
-                <h4 class="text_white fw-4 mb_4"><a class="hover-underline-link link">
+                <h4 class="text_white fw-4 mb_4"><a class="hover-underline-link link" href="mailto:<?php echo esc_attr($settings['title-heding']); ?>">
                         <?php echo esc_html($settings['title-heding']); ?></a>
                 </h4>
                 <?php endif; ?>
