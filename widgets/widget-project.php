@@ -236,7 +236,7 @@ $this->end_controls_section();
         $description= !empty($item['description']) ? $item['description'] : '';
     ?>
     <div class="portfolio-item element">
-        <a href="<?php echo esc_url($link_url); ?>" class="img-style">
+        <a href="<?php echo esc_url($image_url); ?>" data-fancybox="gallery" class="img-style">
             <img src="<?php echo esc_url($image_url); ?>" alt="thumb" loading="lazy" decoding="async">
             <div class="tag font-3 text-label text-uppercase fw-6 letter-spacing-1">
                 <?php echo esc_html($description); ?>
@@ -280,7 +280,7 @@ $this->end_controls_section();
                     $description = !empty($item['description']) ? $item['description'] : '';
                     ?>
         <div class="portfolio-item element">
-            <a href="<?php echo esc_url($image_url); ?>" class="img-style">
+            <a href="<?php echo esc_url($image_url); ?>" data-fancybox="gallery" class="img-style">
                 <img src="<?php echo esc_url($image_url); ?>" alt="thumb">
                 <div class="tag font-3 text-label text-uppercase fw-6 letter-spacing-1">
                     <?php echo esc_html($description); ?>
