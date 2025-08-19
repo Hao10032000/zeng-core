@@ -326,11 +326,16 @@ final class ThemesFlat_Addon_For_Elementor_zeng {
 
 
 
-    public function init_controls() {}    
+    public function init_controls() {}   
+    
+    public function widget_styles() {
+
+        wp_enqueue_style( 'tf-main', plugins_url( '/assets/css/main.css', __FILE__ ) );
+
+    }
 
 
     public function widget_scripts() {
-
 
         wp_register_script( 'tf-posts-core', plugins_url( '/assets/js/posts/tf-posts.js', __FILE__ ), [ 'jquery' ], false, true );
 

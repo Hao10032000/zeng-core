@@ -94,17 +94,6 @@ class TFTabs_Widget extends \Elementor\Widget_Base {
     );
 
     $this->add_control(
-        'tab_list',
-        [
-            'label' => esc_html__( 'Tab Items', 'themesflat-core' ),
-            'type' => \Elementor\Controls_Manager::REPEATER,
-            'fields' => $repeater->get_controls(),
-            'default' => [],
-            'title_field' => '{{{ list_title }}}',
-        ]
-    );
-    
-    $this->add_control(
     'tab_list',
     [
         'label' => esc_html__( 'Tab Items', 'themesflat-core' ),

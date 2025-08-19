@@ -43,3 +43,20 @@ function save_youtube_url_meta_box($post_id) {
     }
 }
 add_action('save_post', 'save_youtube_url_meta_box');
+
+function my_render_elementor_template_shortcode( $atts ) {
+    $atts = shortcode_atts( [
+        'id' => '',
+    ], $atts );
+
+    if ( empty( $atts['id'] ) ) {
+        return '';
+    }
+
+    if ( ! class_exists( '\Elementor\Plugin' ) ) {
+        return '<!-- Elementor plugin not active -->';
+    }
+
+    return \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $atts['id'] );
+}
+add_shortcode( 'my_elementor_template', 'my_render_elementor_template_shortcode' );
